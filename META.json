@@ -28,7 +28,8 @@
       },
       "runtime" : {
          "requires" : {
-            "Evo" : "0.214",
+            "Evo" : "0.0215",
+            "Mojolicious" : "6.0",
             "perl" : "v5.20.0"
          }
       },
@@ -47,6 +48,6 @@
          "web" : "http://github.com/alexbyk/Mojo-Pua"
       }
    },
-   "version" : "0.001"
+   "version" : "0.002"
 }
 
