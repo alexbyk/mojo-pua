@@ -8,4 +8,6 @@ ok pua_patch('http://some.address')->can('then');
 ok pua_post('http://some.address')->can('then');
 ok pua_put('http://some.address')->can('then');
 
+is Mojo::Pua::SINGLE->max_connections, 100;
+
 done_testing;

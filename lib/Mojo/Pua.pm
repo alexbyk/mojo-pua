@@ -2,7 +2,8 @@ package Mojo::Pua;
 use Evo 'Evo::Export *; Evo::Promise *; ::Class';
 
 # VERSION
-use constant SINGLE => our $SINGLE = Mojo::Pua::Class->new;
+use constant SINGLE => our $SINGLE
+  = Mojo::Pua::Class->new(max_connections => 100);
 
 sub pua_delete(@opts) : Export  { SINGLE()->delete(@_) }
 sub pua_get(@opts) : Export     { SINGLE()->get(@_) }
@@ -21,18 +22,16 @@ sub pua_put(@opts) : Export     { SINGLE()->put(@_) }
 
   use Evo 'Mojo::Pua *; Mojo::IOLoop';
 
-  pua_get('http://alexbyk.com')
+  pua_get('http://alexbyk.com/')
 
     ->then(sub($res) { say $res->dom->at('title') })
 
-    ->catch(sub($err) { say "$err", $err->res->dom->at('title') })
+    ->catch(sub($err) { say "$err"; $err->res and say $err->res->body })
 
     ->finally(sub { Mojo::IOLoop->stop });
 
 
   Mojo::IOLoop->start;
-
-
 
 =head1 DESCRIPTION
 

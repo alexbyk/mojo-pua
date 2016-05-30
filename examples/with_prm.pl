@@ -5,7 +5,7 @@ prm {
   then { pua_get('http://alexbyk.com') };
 
   then sub($res) { say $res->dom->at('title') };
-  catch sub($err) { say "$err", $err->res->dom->at('title') };
+  catch sub($err) { say "$err"; say $err->res->body if $err->res };
 
   finally { Mojo::IOLoop->stop };
 };

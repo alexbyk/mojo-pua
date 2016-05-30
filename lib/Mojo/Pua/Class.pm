@@ -2,9 +2,6 @@ package Mojo::Pua::Class;
 use Mojo::Base 'Mojo::UserAgent';
 use Evo '-Promise::Class; -Promise *; Carp croak; Mojo::Pua::Error';
 
-
-has max_connections => 100;
-
 no warnings 'redefine';
 *Evo::Promise::Class::loop_postpone = sub($cb) : prototype(&) {
   Mojo::IOLoop->next_tick($cb);
@@ -37,3 +34,27 @@ sub start ($self, $tx, $cb_empty = undef) {
 
 
 1;
+
+# ABSTRACT: HTTP Client Class + Evo::Promises
+
+=head1 SYNOPSIS
+
+
+  use Evo 'Mojo::Pua::Class';
+  my $ua = Mojo::Pua::Class->new();
+
+  $ua->get("http://alexbyk.com/")
+
+    ->then(sub($res) { say $res->dom->at('title') })
+
+    ->catch(sub($err) { say "ERR: $err"; say $err->res->body if $err->res; })
+
+    ->finally(sub { Mojo::IOLoop->stop; });
+
+  Mojo::IOLoop->start;
+
+=head2 DESCRIPTION
+
+C<Mojo::Pua::Class> inherits all methods from L<Mojo::UserAgent> but returns L<Evo::Promise::Class> object for each request
+
+=cut
