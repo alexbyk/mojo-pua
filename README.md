@@ -1,25 +1,26 @@
-# NAME
+# NAME [![Build Status](https://travis-ci.org/alexbyk/mojo-pua.svg?branch=master)](https://travis-ci.org/alexbyk/mojo-pua)
 
 Mojo::Pua - HTTP Client + Evo::Promises
 
-# VERSION
-
-version 0.003
-
 # SYNOPSIS
 
-    use Evo 'Mojo::Pua *; Mojo::IOLoop';
+```perl
+use Evo 'Mojo::Pua *; Mojo::IOLoop';
 
-    pua_get('http://alexbyk.com')
+pua_get('http://alexbyk.com')
 
-      ->then(sub($res) { say $res->dom->at('title') })
+  ->then(sub($res) { say $res->dom->at('title') })
 
-      ->catch(sub($err) { say "$err", $err->res->dom->at('title') })
+  ->catch(sub($err) { say "$err", $err->res->dom->at('title') })
 
-      ->finally(sub { Mojo::IOLoop->stop });
+  ->finally(sub { Mojo::IOLoop->stop });
 
+Mojo::IOLoop->start;
+```
 
-    Mojo::IOLoop->start;
+# INSTALLATION
+
+  cpanm Mojo::Pua
 
 # DESCRIPTION
 

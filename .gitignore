@@ -1,2 +1,8 @@
 /Mojo-Pua-*
-/.build/
+/tmp/
+.*
+*~
+!.gitignore
+!.perltidyrc
+!.perlcriticrc
+!.travis.yml
