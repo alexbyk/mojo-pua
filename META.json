@@ -4,7 +4,7 @@
       "alexbyk <alexbyk.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 6.005, CPAN::Meta::Converter version 2.150005",
+   "generated_by" : "Dist::Zilla version 6.006, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -28,8 +28,8 @@
       },
       "runtime" : {
          "requires" : {
-            "Evo" : "0.0226",
-            "Mojolicious" : "6.0",
+            "Evo" : "0.0242",
+            "Mojolicious" : "7.0",
             "perl" : "v5.20.0"
          }
       },
@@ -48,6 +48,7 @@
          "web" : "http://github.com/alexbyk/Mojo-Pua"
       }
    },
-   "version" : "0.004"
+   "version" : "0.005",
+   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0217"
 }
 

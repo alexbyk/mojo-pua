@@ -1,6 +1,6 @@
 requires 'perl',         '5.20.0';
-requires 'Evo',          '0.0226';
-requires 'Mojolicious',  '6.0';
+requires 'Evo',          '0.0242';
+requires 'Mojolicious',  '7.0';
 
 on test => sub {
   requires 'Test::More', '0.88';

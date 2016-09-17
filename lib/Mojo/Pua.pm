@@ -1,5 +1,5 @@
 package Mojo::Pua;
-use Evo 'Evo::Export *; Evo::Promise *; ::Class';
+use Evo 'Evo::Export *; ::Class';
 
 # VERSION
 use constant SINGLE => our $SINGLE

@@ -1,15 +1,12 @@
 package Mojo::Pua::Class;
 use Mojo::Base 'Mojo::UserAgent';
-use Evo 'Mojo::Promise::Class; Carp croak; Mojo::Pua::Error';
-use Evo::Promise::Deferred;
+use Evo 'Mojo::Promise *; Carp croak; Mojo::Pua::Error';
 
 
 sub start ($self, $tx, $cb_empty = undef) {
 
   croak "Got callback but this class returns a Promise" if $cb_empty;
-  my $p = Mojo::Promise::Class->new;
-  my $d = Evo::Promise::Deferred->new(promise => $p);
-
+  my $d = deferred();
 
   my $pcb = sub ($ua, $tx) {
     my $res = $tx->success;
@@ -26,7 +23,7 @@ sub start ($self, $tx, $cb_empty = undef) {
 
   $self->SUPER::start($tx, $pcb);
 
-  $p;
+  $d->promise;
 }
 
 
