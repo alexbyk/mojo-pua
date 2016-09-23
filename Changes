@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.007     2016-09-23 18:48:09+03:00 Europe/Kiev
+
 0.006     2016-09-23 16:28:38+03:00 Europe/Kiev
 
 - Made a code refactoring. Use the latest Evo
