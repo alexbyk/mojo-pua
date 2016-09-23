@@ -6,15 +6,8 @@ use Evo 'Evo::Export; Mojo::Promise *; Carp croak; Mojo::Pua::Error';
 
 # LIB version
 
-use constant SINGLE => our $SINGLE = __PACKAGE__->new(max_connections => 100);
-
-sub pua_delete(@opts) : Export  { SINGLE()->delete(@_) }
-sub pua_get(@opts) : Export     { SINGLE()->get(@_) }
-sub pua_head(@opts) : Export    { SINGLE()->head(@_) }
-sub pua_options(@opts) : Export { SINGLE()->options(@_) }
-sub pua_patch(@opts) : Export   { SINGLE()->patch(@_) }
-sub pua_post(@opts) : Export    { SINGLE()->post(@_) }
-sub pua_put(@opts) : Export     { SINGLE()->put(@_) }
+use constant PUA => __PACKAGE__->new();
+export 'PUA';
 
 # OO version
 sub start ($self, $tx, $cb_empty = undef) {
@@ -69,40 +62,14 @@ C<Mojo::Pua> inherits all methods from L<Mojo::UserAgent> but returns L<Mojo::Pr
   Mojo::IOLoop->start;
 
 
-=head1 LIB version SYNOPSIS
+=head1 functions
 
-  use Evo 'Mojo::Pua *; Mojo::IOLoop';
+=head1 PUA
 
-  pua_get('http://alexbyk.com/')
-
-    ->then(sub($res) { say $res->dom->at('title') })
-
-    ->catch(sub($err) { say "$err"; $err->res and say $err->res->body })
-
-    ->finally(sub { Mojo::IOLoop->stop });
-
-
-  Mojo::IOLoop->start;
-
-
-=head1 FUNCTIONS
-
-=head2 pua_delete 
-
-=head2 pua_get
-
-=head2 pua_head 
-
-=head2 pua_options
-
-=head2 pua_patch
-
-=head2 pua_post 
-
-=head2 pua_put
-
-Perform non-blocking request and return a promise object. See L<Mojo::UserAgent>, because this module right now is based on it
-See L<https://github.com/alexbyk/mojo-pua> "examples" for more examples
+A single instance of C<Mojo::Pua>.
+  
+  use Evo 'Mojo::Pua PUA';
+  PUA->get('http://mail.ru')->then(sub {...});
 
 =head1 SEE ALSO
 

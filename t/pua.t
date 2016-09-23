@@ -1,13 +1,9 @@
-use Evo 'Test::More; Mojo::Pua *';
+use Evo 'Test::More; Mojo::Pua PUA';
 
-ok pua_delete('http://some.address')->can('then');
-ok pua_get('http://some.address')->can('then');
-ok pua_head('http://some.address')->can('then');
-ok pua_options('http://some.address')->can('then');
-ok pua_patch('http://some.address')->can('then');
-ok pua_post('http://some.address')->can('then');
-ok pua_put('http://some.address')->can('then');
-
-is Mojo::Pua::SINGLE->max_connections, 100;
+isa_ok PUA, 'Mojo::Pua';
 
 done_testing;
+
+
+use Evo 'Mojo::Pua PUA';
+PUA->get('http://mail.ru')->then(sub {...});
