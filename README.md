@@ -1,6 +1,6 @@
 # NAME [![Build Status](https://travis-ci.org/alexbyk/mojo-pua.svg?branch=master)](https://travis-ci.org/alexbyk/mojo-pua)
 
-Mojo::Pua - HTTP Client + Evo::Promises
+Mojo::Pua - HTTP Client + PromisesA+
 
 # SYNOPSIS
 
