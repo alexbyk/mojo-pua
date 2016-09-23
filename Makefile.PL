@@ -17,7 +17,7 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.020000",
   "NAME" => "Mojo::Pua",
   "PREREQ_PM" => {
-    "Evo" => "0.0242",
+    "Evo" => "0.0243",
     "Mojolicious" => "7.0"
   },
   "TEST_REQUIRES" => {
@@ -31,7 +31,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Evo" => "0.0242",
+  "Evo" => "0.0243",
   "Mojolicious" => "7.0",
   "Test::More" => "0.88"
 );
