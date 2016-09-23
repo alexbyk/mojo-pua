@@ -48,7 +48,7 @@
          "web" : "http://github.com/alexbyk/Mojo-Pua"
       }
    },
-   "version" : "0.005",
+   "version" : "0.006",
    "x_serialization_backend" : "Cpanel::JSON::XS version 3.0217"
 }
 

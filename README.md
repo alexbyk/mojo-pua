@@ -5,17 +5,18 @@ Mojo::Pua - HTTP Client + Evo::Promises
 # SYNOPSIS
 
 ```perl
-use Evo 'Mojo::Pua *; Mojo::IOLoop';
+  use Evo 'Mojo::Pua';
+  my $ua = Mojo::Pua->new();
 
-pua_get('http://alexbyk.com')
+  $ua->get("http://alexbyk.com/")
 
-  ->then(sub($res) { say $res->dom->at('title') })
+    ->then(sub($res) { say $res->dom->at('title') })
 
-  ->catch(sub($err) { say "$err", $err->res->dom->at('title') })
+    ->catch(sub($err) { say "ERR: $err"; say $err->res->body if $err->res; })
 
-  ->finally(sub { Mojo::IOLoop->stop });
+    ->finally(sub { Mojo::IOLoop->stop; });
 
-Mojo::IOLoop->start;
+  Mojo::IOLoop->start;
 ```
 
 # INSTALLATION
@@ -27,7 +28,7 @@ Mojo::IOLoop->start;
 !!!ATTENTION
 This is first temporary release. Use it on your own risk.
 
-This module is based on [Mojo::UserAgent](https://metacpan.org/pod/Mojo::UserAgent) and allows you to use promises ([Evo::Promise](https://metacpan.org/pod/Evo::Promise))
+This module is based on [Mojo::UserAgent](https://metacpan.org/pod/Mojo::UserAgent) and allows you to use promises ([Mojo::Promise](https://metacpan.org/pod/Mojo::Promise))
 
 # FUNCTIONS
 

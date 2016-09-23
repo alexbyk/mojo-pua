@@ -1,5 +1,5 @@
 requires 'perl',         '5.20.0';
-requires 'Evo',          '0.0242';
+requires 'Evo',          '0.0243';
 requires 'Mojolicious',  '7.0';
 
 on test => sub {

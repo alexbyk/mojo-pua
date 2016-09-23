@@ -1,6 +1,6 @@
 #BEGIN { $ENV{MOJO_USERAGENT_DEBUG} = 1 }
 use Mojolicious::Lite;
-use Evo 'Test::More; Mojo::Pua::Class';
+use Evo 'Test::More; Mojo::Pua';
 
 # setup
 any '/test' =>
@@ -21,7 +21,7 @@ my $server = Mojo::Server::Daemon->new(
 )->start;
 my $port = $server->ioloop->acceptor($server->acceptors->[0])->port;
 
-my $ua = Mojo::Pua::Class->new();
+my $ua = Mojo::Pua->new();
 
 # shouldn't use callback
 eval {
