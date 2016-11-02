@@ -1,13 +1,12 @@
-use Evo 'Mojo::Pua *; Mojo::IOLoop';
+use Evo 'Mojo::Pua PUA; Mojo::IOLoop';
 
 
 # 200
-pua_get('http://alexbyk.com')
+PUA->get('http://alexbyk.com')
 
-  ->then(sub($res) { say $res->dom->at('title') })
+  ->then(sub($tx) { say $tx->res->dom->at('title') })
 
-  # same as ->to_string
-  ->catch(sub($err) { say "$err"; $err->res and say $err->res->body })
+  ->catch(sub($err) { say "$err"; })
 
   ->finally(sub { Mojo::IOLoop->stop });
 

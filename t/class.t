@@ -3,13 +3,13 @@ use Mojolicious::Lite;
 use Evo 'Test::More; Mojo::Pua';
 
 # setup
-any '/test' =>
+any '/200' =>
   sub($c) { $c->render(text => join ';', "working", $c->req->url); };
 
-any '/test_post' =>
+any '/200_post' =>
   sub($c) { $c->render(text => join ';', "working", $c->req->body); };
 
-any '/test_404' => sub($c) { $c->res->body("Foo"); $c->rendered(404); };
+any '/404' => sub($c) { $c->res->body("Foo"); $c->rendered(404); };
 
 
 use Mojo::Server::Daemon;
@@ -25,42 +25,49 @@ my $ua = Mojo::Pua->new();
 
 # shouldn't use callback
 eval {
-  $ua->get("http://127.0.0.1:$port", sub($res) {fail})->then();
+  $ua->get("http://127.0.0.1:$port", sub {fail})->then();
 };
 like $@, qr/Got callback.+$0/;
 
 POST_FORM: {
-  my $res;
-  $ua->post("http://127.0.0.1:$port/test_post", form => {foo => 33})
-    ->then(sub { $res = shift; })->finally(sub { Mojo::IOLoop->stop });
+  my $tx;
+  $ua->post("http://127.0.0.1:$port/200_post", form => {foo => 33})
+    ->then(sub { $tx = shift; })->finally(sub { Mojo::IOLoop->stop });
   Mojo::IOLoop->start;
-  is $res->body, 'working;foo=33';
+  is $tx->res->body, 'working;foo=33';
 }
 
 # promise get
 GET: {
-  my $res;
-  $ua->get("http://127.0.0.1:$port/test")->then(sub { $res = shift; })
+  my $tx;
+  $ua->get("http://127.0.0.1:$port/200")->then(sub { $tx = shift; })
     ->finally(sub { Mojo::IOLoop->stop });
   Mojo::IOLoop->start;
-  is $res->body, 'working;/test';
+  is $tx->res->body, 'working;/200';
 }
 
 GET_FORM: {
-  my $res;
-  $ua->get("http://127.0.0.1:$port/test", form => {foo => 33})
-    ->then(sub { $res = shift; })->finally(sub { Mojo::IOLoop->stop });
+  my $tx;
+  $ua->get("http://127.0.0.1:$port/200", form => {foo => 33})
+    ->then(sub { $tx = shift; })->finally(sub { Mojo::IOLoop->stop });
   Mojo::IOLoop->start;
-  is $res->body, 'working;/test?foo=33';
+  is $tx->res->body, 'working;/200?foo=33';
 }
 
-ERROR: {
-  my $err;
-  $ua->get("http://127.0.0.1:$port/test_404")->catch(sub { $err = shift; })
+NOT_EXCEPTION_404: {
+  my $tx;
+  $ua->get("http://127.0.0.1:$port/404")->then(sub { $tx = shift; })
     ->finally(sub { Mojo::IOLoop->stop });
   Mojo::IOLoop->start;
-  is $err->res->body, 'Foo';
-  like $err->to_string, qr/404/;
+  is $tx->error->{message}, 'Not Found';
+}
+
+EXCEPTION: {
+  my $err;
+  $ua->get("http://127.0.0.1:23423445/404")->catch(sub { $err = shift; })
+    ->finally(sub { Mojo::IOLoop->stop });
+  Mojo::IOLoop->start;
+  is $err, 'Connection refused';
 }
 
 done_testing;

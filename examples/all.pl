@@ -8,9 +8,10 @@ my $pua = Mojo::Pua->new;
 
 all($pua->get('http://alexbyk.com/'), $pua->get('http://mojolicious.org/'))
 
-  ->then(sub($res) { say $_->dom->at('title')->text for @$res })
+  # works like my @tx = @$tx;
+  ->spread(sub(@tx) { say $_->res->dom->at('title')->text for @tx })
 
-  ->catch(sub($err) { say "$err"; $err->res and say $err->res->body })
+  ->catch(sub($err) { say "$err" })
 
   ->finally(sub { Mojo::IOLoop->stop });
 

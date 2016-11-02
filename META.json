@@ -4,7 +4,7 @@
       "alexbyk <alexbyk.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 6.006, CPAN::Meta::Converter version 2.150005",
+   "generated_by" : "Dist::Zilla version 6.007, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -48,7 +48,7 @@
          "web" : "http://github.com/alexbyk/Mojo-Pua"
       }
    },
-   "version" : "0.007",
+   "version" : "0.008",
    "x_serialization_backend" : "Cpanel::JSON::XS version 3.0217"
 }
 
