@@ -1,5 +1,5 @@
 {
-   "abstract" : "HTTP Client + Evo::Promises",
+   "abstract" : "HTTP Client + Evo::Promise",
    "author" : [
       "alexbyk <alexbyk.com>"
    ],
@@ -28,7 +28,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Evo" : "0.0243",
+            "Evo" : "0.0248",
             "Mojolicious" : "7.0",
             "perl" : "v5.20.0"
          }

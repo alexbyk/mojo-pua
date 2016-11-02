@@ -7,7 +7,7 @@ use 5.020000;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "HTTP Client + Evo::Promises",
+  "ABSTRACT" => "HTTP Client + Evo::Promise",
   "AUTHOR" => "alexbyk <alexbyk.com>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
@@ -17,7 +17,7 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.020000",
   "NAME" => "Mojo::Pua",
   "PREREQ_PM" => {
-    "Evo" => "0.0243",
+    "Evo" => "0.0248",
     "Mojolicious" => "7.0"
   },
   "TEST_REQUIRES" => {
@@ -31,7 +31,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Evo" => "0.0243",
+  "Evo" => "0.0248",
   "Mojolicious" => "7.0",
   "Test::More" => "0.88"
 );
