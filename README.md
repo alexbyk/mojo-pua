@@ -16,7 +16,6 @@ PUA->get('http://alexbyk.com')
   # we got $res, not $tx, from want_code in the previous step
   ->then(sub($res) { say $res->dom->at('title') })
 
-  # same as ->to_string
   ->catch(sub($err) { say "$err"; })
 
   ->finally(sub { Mojo::IOLoop->stop });
