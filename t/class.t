@@ -67,7 +67,7 @@ EXCEPTION: {
   $ua->get("http://127.0.0.1:23423445/404")->catch(sub { $err = shift; })
     ->finally(sub { Mojo::IOLoop->stop });
   Mojo::IOLoop->start;
-  is $err, 'Connection refused';
+  ok $err;
 }
 
 done_testing;

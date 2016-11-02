@@ -35,20 +35,23 @@ $ua->get("http://127.0.0.1:$port/test_404")->then(want_code 404)
 Mojo::IOLoop->start;
 is $res->code, 404;
 
+undef $err;
 $ua->get("http://127.0.0.1:$port/200")->then(want_code 404)
   ->catch(sub { $err = shift; })->finally(sub { Mojo::IOLoop->stop });
 Mojo::IOLoop->start;
 like $err, qr/Wanted \[404\], got \[200\] OK.+$0/;
 
+undef $err;
 $ua->get("http://127.0.0.1:23423445/test_404")->then(want_code 200)
   ->catch(sub { $err = shift; })->finally(sub { Mojo::IOLoop->stop });
 Mojo::IOLoop->start;
-is $err, 'Connection refused';
+ok $err;
 
+undef $err;
 $ua->get("http://127.0.0.1:23423445/test_404")
   ->then(want_code 200, sub { $err = shift; })
   ->finally(sub { Mojo::IOLoop->stop });
 Mojo::IOLoop->start;
-is $err, 'Connection refused';
+ok $err;
 
 done_testing;
