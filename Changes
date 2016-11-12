@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.010     2016-11-12 19:24:24+02:00 Europe/Kiev
 - Change requirements
 - Added want_code generator
 - Breaking changes: 404, 500 answers now fulfill promise, while network errors reject

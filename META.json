@@ -28,7 +28,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Evo" : "0.0248",
+            "Evo" : "0.0252",
             "Mojolicious" : "7.0",
             "perl" : "v5.20.0"
          }
