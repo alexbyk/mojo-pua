@@ -1,6 +1,6 @@
 package Mojo::Pua;
 use Mojo::Base 'Mojo::UserAgent';
-use Evo 'Evo::Export; Mojo::Promise *; Carp croak';
+use Evo 'Evo::Export; -Promise::Mojo *; Carp croak';
 
 # VERSION
 
@@ -41,11 +41,11 @@ sub want_code($want_code) : prototype($) : Export {
 
 =head1 DESCRIPTION
 
-This module is based on L<Mojo::UserAgent> and allows you to use promises (L<Mojo::Promise>)
+This module is based on L<Mojo::UserAgent> and allows you to use promises (L<Evo::Promise::Mojo>)
 
 =head1 SYNOPSIS
 
-C<Mojo::Pua> inherits all methods from L<Mojo::UserAgent> but returns L<Mojo::Promise> object for each request
+C<Mojo::Pua> inherits all methods from L<Mojo::UserAgent> but returns L<Evo::Promise::Mojo> object for each request
 
   use Evo 'Mojo::Pua';
   my $ua = Mojo::Pua->new();
@@ -117,7 +117,7 @@ Return
 =head1 SEE ALSO
 
 L<Mojo::UserAgent>
-L<Mojo::Promise>
+L<Evo::Promise::Mojo>
 L<https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise>
 
 =cut
